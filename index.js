@@ -3,6 +3,7 @@ const exphbs = require("express-handlebars");
 
 const app = express();
 const conn = require("./db/conn");
+require("dotenv").config();
 
 const productsRoutes = require("./routes/productsRoutes");
 
