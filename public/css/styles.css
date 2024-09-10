@@ -76,6 +76,7 @@ form {
 }
 
 .product img {
+  width: 300;
   max-width: 100%;
   margin-bottom: 0.5em;
 }
