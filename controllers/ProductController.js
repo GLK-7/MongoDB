@@ -19,4 +19,37 @@ module.exports = class ProductController {
     });
     res.redirect("/products");
   }
+
+  static async getProduct(req, res) {
+    const id = req.params.id;
+
+    const product = await Product.getProductById(id);
+
+    res.render("products/product", { product });
+  }
+
+  static async removeProduct(req, res) {
+    const id = req.params.id;
+
+    await Product.removeProductById(id);
+
+    res.redirect("/");
+  }
+
+  static async editProduct(req, res) {
+    const id = req.params.id;
+    const product = await Product.getProductById(id);
+
+    res.render("products/edit", { product });
+  }
+
+  static async editProductPost(req, res) {
+    const { id, name, image, price, description } = req.body;
+
+    const product = new Product(name, image, price, description);
+
+    await product.updateProduct(id);
+
+    res.redirect("/");
+  }
 };
